@@ -317,7 +317,7 @@ void ssd1306_display(void)
 {
 	ssd1306_command(SSD1306_COLUMNADDR);
 	ssd1306_command(0);	// Column start address (0 = reset)
-	ssd1306_command(SSD1306_LCDWIDTH - 1);	// Column end address (127 
+	ssd1306_command(SSD1306_LCDWIDTH - 1);	// Column end address (127
 	// = reset)
 
 	ssd1306_command(SSD1306_PAGEADDR);
@@ -335,8 +335,8 @@ void ssd1306_display(void)
 	// I2C
 	int i;
 	for (i = 0; i < (SSD1306_LCDWIDTH * SSD1306_LCDHEIGHT / 8); i++) {
-		wiringPiI2CWriteReg8(i2cd, 0x40, buffer[i]); 
-		//This sends byte by byte. 
+		wiringPiI2CWriteReg8(i2cd, 0x40, buffer[i]);
+		//This sends byte by byte.
 		//Better to send all buffer without 0x40 first
 		//Should be optimized
 	}
@@ -608,7 +608,7 @@ void ssd1306_drawFastVLineInternal(int x, int __y, int __h, unsigned int color)
 	// now do the final partial byte, if necessary
 	if (h) {
 		mod = h & 7;
-		// this time we want to mask the low bits of the byte, vs the high 
+		// this time we want to mask the low bits of the byte, vs the high
 		// bits we did above
 		// register unsigned int mask = (1 << mod) - 1;
 		// note - lookup table results in a nearly 10% performance
@@ -651,7 +651,7 @@ void ssd1306_drawFastHLine(int x, int y, int w, unsigned int color)
 		x -= (w - 1);
 		break;
 	case 3:
-		// 270 degree rotation, swap x & y for rotation, then invert y and 
+		// 270 degree rotation, swap x & y for rotation, then invert y and
 		// adjust y for w (not to become h)
 		bSwap = true;
 		ssd1306_swap(x, y);
